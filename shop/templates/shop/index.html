@@ -46,10 +46,9 @@
 <div class="container">
   <!-- slide show starts -->
   {% for product,range,nslides in allProds %}
-  <h3 class="my-4">Flash sale on {{product.0.category}} - Recommended Items</h3>
+  <h3 class="my-4">Sale on {{product.0.category}} - Recommended Items</h3>
   <div class="prev">
   <div id="demo{{forloop.counter}}" class="col carousel slide my-3" data-ride="carousel">
-
     <ul class="carousel-indicators">
       <li data-target="#demo" data-slide-to="0" class="active"></li>
       {% for i in range %}
@@ -64,14 +63,16 @@
 
         {% for i in product %}
         <div class="col-xs-3 col-sm-3 col-md-3">
-          <div class="card" style="width: 18rem;">
-            <img src='/media/{{i.image }}' class="card-img-top" alt="...">
+          <div class="card align-item-center" style="width: 18rem;">
+            <img src='/media/{{i.image}}' class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{i.product_name}}</h5>
-              <p class="card-text">{{ i.desc }}</p>
+              <h5 class="card-title" id="namepr{{i.id}}" >{{i.product_name}}</h5>
+              <p class="card-text">{{ i.desc|slice:"0:23"}}...</p>
+              <span id="divpr{{i.id}}">
               <button id="pr{{ i.id }}" class="btn btn-primary cart">Add to cart</button>
+            </span>
               <a href="/shop/products/{{i.id}}"><button id="qv{{ i.id }}" class="btn btn-primary cart">Quick view</button></a>
-          
+            
             </div>
           </div>
         </div>
@@ -97,6 +98,8 @@
 
 {% block js%}
 <script>
+
+// Find out the cart item from localstorage
   if(localStorage.getItem('cart')== null)
   {
     var cart = {};
@@ -104,9 +107,10 @@
   else {
     cart = JSON.parse(localStorage.getItem('cart'));
     document.getElementById('cart').innerHTML = Object.keys(cart).length;
-
+    // updateCart(cart);
   }
 
+//if the add to cart button is clicked then add+increment the item
 $('.cart').click(function(){
 console.log('clicked');
 var idstr = this.id.toString();
@@ -118,12 +122,31 @@ if(cart[idstr]!=undefined)
 else{
   cart[idstr]=1;
 }
-console.log(cart);
+// updateCart(cart);
 localStorage.setItem('cart',JSON.stringify(cart))
 document.getElementById('cart').innerHTML = Object.keys(cart).length;
 });
 
-$('#popcart').popover('show');
-document.getElementById("popcart").setAttribute('data-content','<h5>Cart for your Items in myshoping cart</h5>');
+//adding popover to cart 
+$('#popcart').popover();
+document.getElementById('popcart').setAttribute('data-content','<h5>Cart for your Items in myshoping cart</h5>');
+updatePopover(cart);
+function updatePopover(cart)
+{
+  console.log('we are inside updatepopover ');
+  var popStr = "";
+  popStr = popStr + "<h5> Cart for your Items in my shopping cart </h5><div class='mx-2 my-2'>";
+  var i = 1;
+  for(var item in cart) {
+    popStr = popStr + "<b>" + i + "</b>. i";
+    popStr = popStr + document.getElementById('name' + item) + "Qty: " + cart[item] + '<br>';
+    i = i+1;
+  }
+  popStr = popStr + "</div>"
+  console.log(popStr);
+  document.getElementById('popcart').setAttribute('data-content',popStr);
+   $('#popcart').popover('show');
+}
+
 </script>
 {% endblock %}

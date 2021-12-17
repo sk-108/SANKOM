@@ -1,5 +1,53 @@
 {% extends 'shop/basic.html' %}
 
-{% block title %} About us {% endblock %}
+{% block title%} About Us{% endblock %}
 
-{% block body %} This is about page {% endblock %}
+{% block css %}
+<style>
+ img{
+  height : 200 px;
+  width : 150px;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+
+
+
+<main role="main">
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <h1 class="display-3">Sankom</h1>
+      <p>Sankom Enterprises is an Indian  commerce company based in Dehradun, India. Founded by Sourav Kumar in 2021,  company  focuses  product categories such as consumer electronics, fashion, and lifestyle products sales.</p>
+      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Sourav Kumar</h2>
+        <img src="/media/shop/images/dp.jpeg" alt="" style="width: 250px;">
+        <p>Hello i am sourav kumar ,i did my schooling Army School R K puram , currently i am pursing Btech in computer science in graphic era university , my hobbies are 
+          Coding , playing football, daily Exercising;
+        </p>
+        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+      </div>
+      
+    </div>
+
+    <hr>
+
+  </div> <!-- /container -->
+
+</main>
+
+
+
+
+
+{% endblock %}
