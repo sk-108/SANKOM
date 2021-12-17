@@ -6,6 +6,7 @@ def index(request) :
     return render(request,'blog/index.html')
 
 
+
 def analyze(request) :
     # Get the text
     djtext = request.POST.get('text','default')
@@ -57,4 +58,3 @@ def analyze(request) :
         return HttpResponse("Please select the operation ")
 
     return render(request,'blog/analyze.html',params)
-
