@@ -24,3 +24,15 @@ class Contact(models.Model) :
 
     def __str__(self) :
         return self.name 
+
+class Checkout(models.Model) : 
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=50,default="")
+    address = models.CharField(max_length=500,default="")
+    address2 = models.CharField(max_length=500,default="")
+    city = models.CharField(max_length=100,default="")
+    state = models.CharField(max_length=100,default="")
+    phone = models.CharField(max_length=50,default="")
+
+    def __str__(self) : 
+        return self.name 
