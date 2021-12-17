@@ -1,27 +1,13 @@
 {% extends 'shop/basic.html' %}
 {% block title%} Checkout - Sankom.com{% endblock %}
 {% block body %}
-<!-- <div class="container">
-    <div class="col my-4">
-        <h2>Step 1 - My Awesome Cart Express Checkout - Review Your Cart Items</h2>
-        <div class="my-4">
-            <ul class="list-group" id="items">
-            </ul>
 
-            <nav aria-label="breadcrumb">
-  <ol class="breadcrumb mt-3">
-    <li class="breadcrumb-item active" aria-current="page">Your Cart Total Is <b>Rs. <span id="totalPrice"></span></b>. Enter your details below & place your order. Thanks for using My Awesome Cart!</li>
-  </ol> -->
-</nav>
-
-
-
-            
+</nav>          
         </div>
     </div>
     <div class="col my-4">
         <h2>Please Enter Address and  Other Details:</h2>
-        <form method="post" action="/shop/">{% csrf_token %}
+        <form method="post" action="/shop/checkout/{{product.id}}">{% csrf_token %}
             <input type="hidden" name="itemsJson" id="itemsJson">
             <input type="hidden" name="amount" id="amount">
             <div class="form-row">
@@ -58,6 +44,7 @@
             </div>
             <button type="submit" class="btn btn-primary alert"  onclick = "fun();"> Place Order </button>
         </form>
+        <h3 style="text-align: center;"><pre><strong>Your total is {{product.price}}</strong> </pre></h3>
     </div>
 </div>
 {% endblock %}

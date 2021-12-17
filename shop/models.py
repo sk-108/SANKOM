@@ -26,13 +26,15 @@ class Contact(models.Model) :
         return self.name 
 
 class Checkout(models.Model) : 
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50,default="")
     email = models.CharField(max_length=50,default="")
     address = models.CharField(max_length=500,default="")
     address2 = models.CharField(max_length=500,default="")
     city = models.CharField(max_length=100,default="")
     state = models.CharField(max_length=100,default="")
     phone = models.CharField(max_length=50,default="")
+    # productName = models.CharField(max_length=50,default="")
+    # productPrice = models.IntegerField(default=0)
 
     def __str__(self) : 
         return self.name 

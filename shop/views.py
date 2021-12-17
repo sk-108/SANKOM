@@ -52,6 +52,7 @@ def productview(request, myid) :
     return render(request,'shop/productview.html',{'product':products[0]})
 
 def checkout(request,id):
+    products = product.objects.filter(id=id)
     if request.method == "POST":
         name = request.POST.get('name','')
         email = request.POST.get('email','')
@@ -62,7 +63,7 @@ def checkout(request,id):
         phone =request.POST.get('phone','')
         checkout = Checkout(name = name , email = email , address = address1, address2 = address2, city = city ,state = state, phone = phone )
         checkout.save()
-    products = product.objects.filter(id=id);
+    
     print(products)
     return render(request,'shop/checkout.html',{'product':products[0]})
     # return render(request,'shop/checkout.html/')
